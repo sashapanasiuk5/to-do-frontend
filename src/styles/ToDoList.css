@@ -1,0 +1,24 @@
+.list-wrapper{
+    padding: 50px 150px 50px 150px;
+    display: flex;
+    gap: 80px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    
+}
+.todos{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.column-title{
+    padding: 30px;
+    font-size: 30px;
+    font-family: 'Inter';
+    color: #182651;
+    text-align: center;
+}
