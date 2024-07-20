@@ -22,3 +22,36 @@
     color: #182651;
     text-align: center;
 }
+
+.ToDoListAddButton{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    background-color: #EE241F;
+    border: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+
+    -webkit-box-shadow: 3px 3px 20px 0px #EB7F7F; 
+    box-shadow: 3px 3px 20px 0px #EB7F7F;
+}
+
+.ToDoListAddButton::after{
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    left: 25%;
+}
+
+.ToDoListAddButton::before{
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    left: 25%;
+    transform: rotateZ(90deg);
+}

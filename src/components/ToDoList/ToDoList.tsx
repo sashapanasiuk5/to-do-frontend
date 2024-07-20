@@ -20,31 +20,34 @@ function ToDoList(){
     }
     
     return (
-        <div className='list-wrapper'>
-            <div className="column">
-                <div className="column-title">
-                    To do
+        <div className="ToDoListWrapper">
+            <div className='list-wrapper'>
+                <div className="column">
+                    <div className="column-title">
+                        To do
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('to-do')}
+                    </div>
                 </div>
-                <div className="todos">
-                    {GetTasksByStatus('to-do')}
+                <div className="column">
+                    <div className="column-title">
+                        In progress
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('in-progress')}
+                    </div>
+                </div>
+                <div className="column">
+                    <div className="column-title">
+                        Done
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('done')}
+                    </div>
                 </div>
             </div>
-            <div className="column">
-                <div className="column-title">
-                    In progress
-                </div>
-                <div className="todos">
-                    {GetTasksByStatus('in-progress')}
-                </div>
-            </div>
-            <div className="column">
-                <div className="column-title">
-                    Done
-                </div>
-                <div className="todos">
-                    {GetTasksByStatus('done')}
-                </div>
-            </div>
+            <button className='ToDoListAddButton'></button>
         </div>
     );
 }
