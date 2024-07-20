@@ -1,10 +1,13 @@
 import React from 'react';
 import ToDoList from './components/ToDoList/ToDoList';
+import { StoreContext, store} from './stores/store'
 
 function App() {
   return (
     <div className="App">
-      <ToDoList></ToDoList>
+      <StoreContext.Provider value={store}>
+        <ToDoList/>
+      </StoreContext.Provider>
     </div>
   );
 }
