@@ -6,6 +6,7 @@ import ToDoListItem from '../ToDoListItem/ToDoListItem';
 import '../../styles/ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
+import CreateTaskModal from '../modals/CreateTaskModal/CreateModal';
 
 
 function ToDoList(){
@@ -47,6 +48,7 @@ function ToDoList(){
                     </div>
                 </div>
             </div>
+            <CreateTaskModal/>
             <button className='ToDoListAddButton'></button>
         </div>
     );
