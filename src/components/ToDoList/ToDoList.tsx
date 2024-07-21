@@ -6,11 +6,11 @@ import ToDoListItem from '../ToDoListItem/ToDoListItem';
 import '../../styles/ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
-import CreateTaskModal from '../modals/CreateTaskModal/CreateModal';
+import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 
 
 function ToDoList(){
-    const { taskStore } = useMobx();
+    const { taskStore, modalsStore} = useMobx();
 
     useEffect(()=> {
         taskStore.fetchTasksAsync()
@@ -18,6 +18,10 @@ function ToDoList(){
 
     const GetTasksByStatus = (status: string): ReactElement[] => {
         return taskStore.tasks.filter( task => task.status.slug === status).map(task => <ToDoListItem task={task}></ToDoListItem>)
+    }
+
+    const handleAddButtonClick = () =>{
+        modalsStore.OpenModal('createTaskModal')
     }
     
     return (
@@ -49,7 +53,7 @@ function ToDoList(){
                 </div>
             </div>
             <CreateTaskModal/>
-            <button className='ToDoListAddButton'></button>
+            <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
         </div>
     );
 }
