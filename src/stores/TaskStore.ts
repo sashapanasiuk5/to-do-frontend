@@ -4,7 +4,7 @@ import { Status } from "../models/Status";
 import TaskDto from "../models/TaskDto";
 
 
-import {createTask, getAllTasks} from "../api/agent"
+import {createTask, getAllTasks, updateTask} from "../api/agent"
 export default class TaskStore{
     tasks: Task[] = []
     statuses: Status[] = []
@@ -35,6 +35,17 @@ export default class TaskStore{
     createTask = async (dto: TaskDto) =>{
         const task: Task = await createTask(dto);
         this.addTask(task);
+    }
+    updateTask = async(editedTask:Task, dto: TaskDto) => {
+        await updateTask(editedTask.id, dto);
+
+        editedTask.title = dto.title;
+        editedTask.description = dto.description;
+        editedTask.priority = dto.priority;
+        const status = this.statuses.find( s => s.id === dto.statusId)
+        if(status == undefined)
+            throw new Error("Status is not found")
+        editedTask.status = status;
     }
 
     deleteTask = (id: number) => {

@@ -5,7 +5,6 @@ import { Status } from '../models/Status';
 
 const agent = axios.create({
     baseURL: 'https://localhost:44331/',
-    transformResponse: (data) => JSON.parse(data),
     headers: {
         Accept: 'application/json'
       },
@@ -19,6 +18,6 @@ export const getAllStatuses = async ():Promise<Status[]> => agent.get<Status[]>(
 
 export const createTask = (dto: TaskDto): Promise<Task> => agent.post<Task>('/tasks', dto).then(responseData)
 
-export const updateTask = async (dto: TaskDto) => agent.put('/tasks', dto)
+export const updateTask = async (id:number, dto: TaskDto) => agent.put(`/tasks/${id}`, dto)
 
-export const deleteTask = async (id: number) => agent.delete('/tasks')
+export const deleteTask = async (id: number) => agent.delete(`/tasks/${id}`)

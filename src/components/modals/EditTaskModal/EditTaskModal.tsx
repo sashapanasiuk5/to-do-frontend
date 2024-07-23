@@ -19,7 +19,7 @@ function EditTaskModal(){
     }
 
     const handleUpdate = async (dto: TaskDto) =>{
-        await taskStore.createTask(dto);
+        await taskStore.updateTask(taskStore.selectedTask!, dto);
         modalsStore.CloseModal('editTaskModal')
     }
     const getModel = (): TaskDto | undefined =>{
