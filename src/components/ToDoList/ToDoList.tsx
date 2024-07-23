@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
 import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 import OpenTaskModal from '../modals/OpenTaskModal/OpenTaskModal';
+import EditTaskModal from '../modals/EditTaskModal/EditTaskModal';
 
 
 function ToDoList(){
@@ -56,6 +57,7 @@ function ToDoList(){
             </div>
             <CreateTaskModal/>
             <OpenTaskModal/>
+            <EditTaskModal/>
             <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
         </div>
     );

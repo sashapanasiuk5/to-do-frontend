@@ -1,4 +1,5 @@
 import { Status } from "./Status"
+import TaskDto from "./TaskDto"
 
 export class Task{
     id: number
