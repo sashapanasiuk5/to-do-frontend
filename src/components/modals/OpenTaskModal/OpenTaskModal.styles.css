@@ -1,0 +1,71 @@
+.OpenTaskModal{
+    padding: 30px;
+    width: 600px;
+}
+.OpenTaskModalTags{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.OpenTaskModalStatus{
+    padding: 5px;
+    padding-left: 6%;
+    padding-right: 6%;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #4DDB74;
+    height: fit-content;
+    position: relative;
+}
+.OpenTaskModalStatus:before{
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #4DDB74;
+    border-radius: 4px;
+    position: absolute;
+    left: 15%;
+    top: calc(50% - 2px);
+}
+.OpenTaskModalTitle{
+    font-family: 'Inter';
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.OpenTaskModalDescription{
+    font-size: 18px;
+    font-family: 'Inter';
+    margin-bottom: 20px;
+}
+.OpenTaskModalPriority{
+    background-color: #EB7F7F;
+    padding: 5px 10px 5px 10px;
+    width: 15%;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.OpenTaskModalPriority span{
+    float: right;
+}
+
+.OpenTaskModalButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.OpenTaskModalButton{
+    width: 120px;
+    padding: 12px;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+}
+.OpenTaskModalButton.edit{
+    background-color: #EB7F7F;
+}
+.OpenTaskModalButton.delete{
+    background-color: #EBC07F;
+}
