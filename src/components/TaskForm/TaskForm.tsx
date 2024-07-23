@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ChangeEvent, FunctionComponent, useState, useEffect} from 'react';
-import { Task } from '../ToDoList/models/Task';
+import { Task } from '../../models/Task';
 import useMobx from '../../stores/store';
 
-import '../../styles/TaskForm.styles.css'
-import TaskDto from './modals/TaskDto';
+import './TaskForm.styles.css'
+import TaskDto from '../../models/TaskDto';
 
 export interface TaskFormData{
     title: string,

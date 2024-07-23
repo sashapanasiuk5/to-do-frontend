@@ -4,12 +4,12 @@ import Modal from 'react-modal'
 
 
 import { styles }  from '../../../styles/modal.styles'
-import '../../../styles/CreateTaskModal.styles.css'
+import './CreateTaskModal.styles.css'
 import useMobx from "../../../stores/store";
 import { observer } from "mobx-react-lite";
-import TaskDto from "../../TaskForm/modals/TaskDto";
+import TaskDto from "../../../models/TaskDto";
 import { TaskForm } from "../../TaskForm/TaskForm";
-import { Task } from "../../ToDoList/models/Task";
+import { Task } from "../../../models/Task";
 
 function CreateTaskModal(){
     const { modalsStore, taskStore} = useMobx()

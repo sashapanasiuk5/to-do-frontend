@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import TaskDto from '../components/TaskForm/modals/TaskDto';
-import { Task } from '../components/ToDoList/models/Task';
-import { Status } from '../components/ToDoList/models/Status';
+import TaskDto from '../models/TaskDto';
+import { Task } from '../models/Task';
+import { Status } from '../models/Status';
 
 const agent = axios.create({
     baseURL: 'https://localhost:44331/',
