@@ -8,7 +8,7 @@ import {createTask, getAllTasks} from "../api/agent"
 export default class TaskStore{
     tasks: Task[] = []
     statuses: Status[] = []
-    selectedTask: Task | null = null
+    selectedTask: Task | undefined = undefined
     constructor(){
         makeAutoObservable(this)
     }
@@ -43,5 +43,5 @@ export default class TaskStore{
     }
 
     selectTask = (task: Task) => this.selectedTask = task
-    deselectTask = () => this.selectedTask = null; 
+    deselectTask = () => this.selectedTask = undefined; 
 } 
