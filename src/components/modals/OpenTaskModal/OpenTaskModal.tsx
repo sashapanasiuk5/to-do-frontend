@@ -32,7 +32,12 @@ const OpenTaskModal: FunctionComponent = () => {
         modalsStore.OpenModal('confirmationModal')
     }
 
-    const test = () => console.log('YEEEEH')
+    const deleteTask = () => {
+        taskStore.deleteTask(taskStore.selectedTask!.id)
+        modalsStore.CloseModal('openTaskModal')
+        taskStore.deselectTask()
+        modalsStore.CloseModal('confirmationModal')
+    }
 
     return (
         <Modal style={styles} isOpen={modalsStore.modalsState.openTaskModal.isOpen} onRequestClose={handleCloseModal} ariaHideApp={false}>
@@ -48,7 +53,7 @@ const OpenTaskModal: FunctionComponent = () => {
                     <button className='OpenTaskModalButton delete' onClick={handleDelete}>Delete</button>
                 </div>
             </div>
-            <ConfirmationModal message="Are you sure you want to delete this task?" title="Delete task" onSuccess={test} okButtonName='Delete'/>
+            <ConfirmationModal message="Are you sure you want to delete this task?" title="Delete task" onSuccess={deleteTask} okButtonName='Delete'/>
             
         </Modal>
     );
