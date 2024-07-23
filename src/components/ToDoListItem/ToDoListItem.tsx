@@ -1,5 +1,5 @@
 import React from "react";
-import { Task } from "../ToDoList/models/Task";
+import { Task } from "../../models/Task";
 
 import Edit from '../../icons/edit.svg';
 import '../../styles/ToDoListItem.css'

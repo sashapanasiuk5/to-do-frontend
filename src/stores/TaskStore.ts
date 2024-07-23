@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
-import { Task } from "../components/ToDoList/models/Task";
-import { Status } from "../components/ToDoList/models/Status";
-import TaskDto from "../components/TaskForm/modals/TaskDto";
+import { Task } from "../models/Task";
+import { Status } from "../models/Status";
+import TaskDto from "../models/TaskDto";
 
 
 import {createTask, getAllTasks} from "../api/agent"
