@@ -13,6 +13,7 @@ function ToDoList(){
     const { taskStore, modalsStore} = useMobx();
 
     useEffect(()=> {
+        taskStore.fetchStatusesAsync()
         taskStore.fetchTasksAsync()
     }, [taskStore])
 

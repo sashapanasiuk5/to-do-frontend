@@ -13,7 +13,7 @@ function ToDoListItem ( { task }: Props){
     return (
     <div className="todo-item">
         <div className="item-header">
-            <div className="title">{task.name}</div>
+            <div className="title">{task.title}</div>
             <img className="edit-button" src={Edit} alt=""/>
         </div>
 

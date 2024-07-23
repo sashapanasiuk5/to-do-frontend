@@ -1,0 +1,39 @@
+.TaskForm{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+
+.TaskFormInput, .TaskFormSelect, .TaskFormTextArea{
+    padding: 10px;
+    border: 2px solid #99A4B9;
+    font-size: 20px;
+    border-radius: 5px;
+    font-family: 'Inter';
+}
+
+
+.TaskFormTextArea{
+    resize: vertical;
+    max-height: 300px;
+}
+
+.TaskFormTextArea{
+    min-height: 200px;
+}
+
+
+.TaskFormButton{
+    align-self: flex-end;
+    background-color: #EB7F7F;
+    color: #fff;
+    padding: 10px 50px 10px 50px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+    font-size: 20px;
+    font-family: 'Inter';
+}

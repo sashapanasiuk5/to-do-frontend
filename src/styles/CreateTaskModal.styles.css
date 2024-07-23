@@ -4,7 +4,7 @@
     padding-left: 30px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 .CreateTaskModalTitle{
     font-size: 24px;
@@ -12,36 +12,4 @@
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
-}
-
-.CreateTaskModalInput, .CreateTaskModalSelect, .CreateTaskModalTextArea{
-    padding: 10px;
-    border: 2px solid #99A4B9;
-    font-size: 20px;
-    border-radius: 5px;
-    font-family: 'Inter';
-}
-
-.CreateTaskModalForm{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.CreateTaskModalTextArea{
-    min-height: 200px;
-}
-
-.CreateTaskModalButton{
-    align-self: flex-end;
-    background-color: #EB7F7F;
-    color: #fff;
-    padding: 10px 50px 10px 50px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-
-    font-size: 20px;
-    font-family: 'Inter';
 }
