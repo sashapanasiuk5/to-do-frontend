@@ -3,15 +3,22 @@ import { Task } from "../../models/Task";
 
 import Edit from '../../icons/edit.svg';
 import './ToDoListItem.css'
+import useMobx from "../../stores/store";
  
 interface Props{
     task: Task
 }
 
 function ToDoListItem ( { task }: Props){
-     
+    const {modalsStore, taskStore} = useMobx();
+
+    const openTask = () => {
+        taskStore.selectTask(task);
+        modalsStore.OpenModal("openTaskModal")
+    }
+
     return (
-    <div className="todo-item">
+    <div className="todo-item" onClick={openTask}>
         <div className="item-header">
             <div className="title">{task.title}</div>
             <img className="edit-button" src={Edit} alt=""/>

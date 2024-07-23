@@ -5,10 +5,12 @@ type ModalType = keyof ModalsStore
 
 interface ModalsList{
     createTaskModal: ModalState
+    openTaskModal: ModalState
 }
 export default class ModalsStore{
     public modalsState: ModalsList ={
-        createTaskModal: new ModalState()
+        createTaskModal: new ModalState(),
+        openTaskModal: new ModalState()
     }
 
     constructor(){
