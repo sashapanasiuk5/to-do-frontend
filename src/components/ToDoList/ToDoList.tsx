@@ -3,7 +3,7 @@ import { Task } from '../../models/Task';
 import { Status }  from '../../models/Status';
 import ToDoListItem from '../ToDoListItem/ToDoListItem';
 
-import '../../styles/ToDoList.css'
+import './ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
 import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';

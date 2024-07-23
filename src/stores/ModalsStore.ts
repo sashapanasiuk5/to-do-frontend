@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import ModalState from "../components/modals/CreateTaskModal/models/ModalState"
+import ModalState from "../models/ModalState"
 
 type ModalType = keyof ModalsStore
 
