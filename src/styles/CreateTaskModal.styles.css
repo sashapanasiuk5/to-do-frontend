@@ -1,0 +1,15 @@
+.CreateTaskModal{
+    width: 600px;
+    padding-right: 30px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+.CreateTaskModalTitle{
+    font-size: 24px;
+    font-family: 'Inter';
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

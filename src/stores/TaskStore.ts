@@ -1,19 +1,26 @@
 import { makeAutoObservable } from "mobx";
 import { Task } from "../components/ToDoList/models/Task";
 import { Status } from "../components/ToDoList/models/Status";
+import TaskDto from "../components/TaskForm/modals/TaskDto";
 
+
+import {createTask, getAllTasks} from "../api/agent"
 export default class TaskStore{
     tasks: Task[] = []
+    statuses: Status[] = []
     constructor(){
         makeAutoObservable(this)
     }
 
     fetchTasksAsync = async () =>{
-        this.tasks = [
-            new Task(1, 'test', 'decsription', 1, new Status(1, 'To do', 'to-do')),
-            new Task(2, 'test1', 'decsription1', 5, new Status(5, 'Done', 'done')),
-            new Task(3, 'test2', 'decsription2', 1, new Status(5, 'Done', 'done')),
-            new Task(4, 'test3', 'decsription3', 2, new Status(5, 'Done', 'done')),
+        this.tasks = await getAllTasks()
+    }
+
+    fetchStatusesAsync = async () => {
+        this.statuses = [
+            new Status(1, 'To do', 'to-do'),
+            new Status(2, 'In Progress', 'in-progress'),
+            new Status(3, 'Done', 'done')
         ]
     }
     setTasks = (tasks: Task[]) => {
@@ -22,6 +29,11 @@ export default class TaskStore{
 
     addTask =(task: Task) => {
         this.tasks.push(task)
+    }
+
+    createTask = async (dto: TaskDto) =>{
+        const task: Task = await createTask(dto);
+        this.addTask(task);
     }
 
     deleteTask = (id: number) => {

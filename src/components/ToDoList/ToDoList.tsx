@@ -6,45 +6,55 @@ import ToDoListItem from '../ToDoListItem/ToDoListItem';
 import '../../styles/ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
+import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 
 
 function ToDoList(){
-    const { taskStore } = useMobx();
+    const { taskStore, modalsStore} = useMobx();
 
     useEffect(()=> {
+        taskStore.fetchStatusesAsync()
         taskStore.fetchTasksAsync()
     }, [taskStore])
 
     const GetTasksByStatus = (status: string): ReactElement[] => {
         return taskStore.tasks.filter( task => task.status.slug === status).map(task => <ToDoListItem task={task}></ToDoListItem>)
     }
+
+    const handleAddButtonClick = () =>{
+        modalsStore.OpenModal('createTaskModal')
+    }
     
     return (
-        <div className='list-wrapper'>
-            <div className="column">
-                <div className="column-title">
-                    To do
+        <div className="ToDoListWrapper">
+            <div className='list-wrapper'>
+                <div className="column">
+                    <div className="column-title">
+                        To do
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('to-do')}
+                    </div>
                 </div>
-                <div className="todos">
-                    {GetTasksByStatus('to-do')}
+                <div className="column">
+                    <div className="column-title">
+                        In progress
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('in-progress')}
+                    </div>
+                </div>
+                <div className="column">
+                    <div className="column-title">
+                        Done
+                    </div>
+                    <div className="todos">
+                        {GetTasksByStatus('done')}
+                    </div>
                 </div>
             </div>
-            <div className="column">
-                <div className="column-title">
-                    In progress
-                </div>
-                <div className="todos">
-                    {GetTasksByStatus('in-progress')}
-                </div>
-            </div>
-            <div className="column">
-                <div className="column-title">
-                    Done
-                </div>
-                <div className="todos">
-                    {GetTasksByStatus('done')}
-                </div>
-            </div>
+            <CreateTaskModal/>
+            <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
         </div>
     );
 }
