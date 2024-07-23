@@ -9,6 +9,7 @@ import useMobx from '../../stores/store';
 import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
 import OpenTaskModal from '../modals/OpenTaskModal/OpenTaskModal';
 import EditTaskModal from '../modals/EditTaskModal/EditTaskModal';
+import ConfirmationModal from '../modals/ConfrmationModal/ConfirmationModal';
 
 
 function ToDoList(){
