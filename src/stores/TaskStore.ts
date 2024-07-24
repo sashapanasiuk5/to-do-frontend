@@ -4,7 +4,7 @@ import { Status } from "../models/Status";
 import TaskDto from "../models/TaskDto";
 
 
-import {createTask, deleteTask, getAllTasks, updateTask} from "../api/agent"
+import {createTask, deleteTask, getAllStatuses, getAllTasks, updateTask} from "../api/agent"
 export default class TaskStore{
     tasks: Task[] = []
     statuses: Status[] = []
@@ -18,11 +18,7 @@ export default class TaskStore{
     }
 
     fetchStatusesAsync = async () => {
-        this.statuses = [
-            new Status(1, 'To do', 'to-do'),
-            new Status(2, 'In Progress', 'in-progress'),
-            new Status(3, 'Done', 'done')
-        ]
+        this.statuses = await getAllStatuses()
     }
     setTasks = (tasks: Task[]) => {
         this.tasks = tasks

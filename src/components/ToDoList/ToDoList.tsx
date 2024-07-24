@@ -6,64 +6,52 @@ import { ToDoListItem}  from '../ToDoListItem/ToDoListItem';
 import './ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
-import CreateTaskModal from '../modals/CreateTaskModal/CreateTaskModal';
-import OpenTaskModal from '../modals/OpenTaskModal/OpenTaskModal';
-import EditTaskModal from '../modals/EditTaskModal/EditTaskModal';
-import ConfirmationModal from '../modals/ConfrmationModal/ConfirmationModal';
+import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import TaskColumn from '../TaskColumn/TaskColumn';
 
 
 function ToDoList(){
     const { taskStore, modalsStore} = useMobx();
-
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+          activationConstraint:{
+            distance: 10
+          }
+        }),
+      );
+      
     useEffect(()=> {
         taskStore.fetchStatusesAsync()
         taskStore.fetchTasksAsync()
     }, [taskStore])
 
-    const GetTasksByStatus = (status: string): ReactElement[] => {
-        return taskStore.tasks
-            .filter( task => task.status.slug === status)
-            .sort( (taskA, taskB) => taskA.priority - taskB.priority)
-            .map(task => <ToDoListItem task={task}></ToDoListItem>)
-    }
+
 
     const handleAddButtonClick = () =>{
         modalsStore.OpenModal('createTaskModal')
     }
+
+    const handleDragEvent = (e: DragEndEvent) =>{
+        if(e.over != null){
+            let statusSlug = e.over.id;
+            let taskId = e.active.id;
+            let task = taskStore.tasks.find(t => t.id == taskId)
+            let status = taskStore.statuses.find(s => s.slug == statusSlug)
+            if(task != undefined && status != undefined){
+                task.status = status
+            }
+        }
+    }
     
     return (
-        <div className="ToDoListWrapper">
-            <div className='list-wrapper'>
-                <div className="column">
-                    <div className="column-title">
-                        To do
-                    </div>
-                    <div className="todos">
-                        {GetTasksByStatus('to-do')}
-                    </div>
+        <DndContext sensors={sensors} onDragEnd={handleDragEvent}>
+            <div className="ToDoListWrapper">
+                <div className='list-wrapper'>
+                    {taskStore.statuses.map(st => <TaskColumn key={st.id} name={st.name} statusType={st.slug} />)}
                 </div>
-                <div className="column">
-                    <div className="column-title">
-                        In progress
-                    </div>
-                    <div className="todos">
-                        {GetTasksByStatus('in-progress')}
-                    </div>
-                </div>
-                <div className="column">
-                    <div className="column-title">
-                        Done
-                    </div>
-                    <div className="todos">
-                        {GetTasksByStatus('done')}
-                    </div>
-                </div>
+                <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
             </div>
-            <CreateTaskModal/>
-            <OpenTaskModal/>
-            <EditTaskModal/>
-            <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
-        </div>
+        </DndContext>
     );
 }
  
