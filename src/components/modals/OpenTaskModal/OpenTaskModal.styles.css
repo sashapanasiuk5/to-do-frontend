@@ -39,11 +39,26 @@
     margin-bottom: 20px;
 }
 .OpenTaskModalPriority{
-    background-color: #EB7F7F;
     padding: 5px 10px 5px 10px;
     width: 15%;
     color: #fff;
     border-radius: 5px;
+}
+
+.OpenTaskModalPriority.red{
+    background-color: #EB7F7F;
+}
+
+.OpenTaskModalPriority.orange{
+    background-color: #F4AF5E;
+}
+
+.OpenTaskModalPriority.yellow{
+    background-color: #FADE4E;
+}
+
+.OpenTaskModalPriority.green{
+    background-color: #AEFA4E;
 }
 
 .OpenTaskModalPriority span{
