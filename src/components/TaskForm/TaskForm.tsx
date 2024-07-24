@@ -13,6 +13,13 @@ export interface TaskFormData{
     statusId: string
 }
 
+interface TaskFormValidationErrors{
+    titleError: string | undefined,
+    descriptionError: string | undefined,
+    priorityError: string | undefined,
+    statusError: string | undefined
+}
+
 
 interface Props {
     submitButtonName: string,
@@ -27,6 +34,14 @@ export const TaskForm: FunctionComponent<Props> = ({submitButtonName, submitActi
         description: '',
         priority: '',
         statusId: ''
+    })
+
+    const [isFormValid, setValidity] = useState(true)
+    const [validationErrors, setErrors] = useState<TaskFormValidationErrors>({
+        titleError: undefined,
+        descriptionError: undefined,
+        priorityError: undefined,
+        statusError: undefined
     })
 
     useEffect(() => {
@@ -46,8 +61,45 @@ export const TaskForm: FunctionComponent<Props> = ({submitButtonName, submitActi
         setFormData({...formData, [name]: value})
     }
 
+    const validateForm = () => {
+        let isValid = true;
+        const errors: TaskFormValidationErrors = {
+            titleError: undefined,
+            descriptionError: undefined,
+            priorityError: undefined,
+            statusError: undefined
+        }
+        if(formData.title.length < 5 || formData.title.length > 30){
+            isValid = false;
+            errors.titleError= "The length of title must be more than 5 and less than 30 characters"
+        }
+
+        if(formData.description.trim().length === 0){
+            isValid = false;
+            errors.descriptionError = "Description is required"
+        }
+
+        if(isNaN(Number(formData.priority))){
+            isValid = false;
+            errors.priorityError = "Priority must be a number"
+        }
+        else if(Number(formData.priority) <= 0){
+            isValid = false;
+            errors.priorityError = "Priority must be greater than 0"
+        }
+
+        if(isNaN(Number(formData.statusId))){
+            isValid = false
+            errors.statusError = "Status is required"
+        }
+
+        setValidity(isValid)
+        setErrors(errors)
+    }
+
     const handleSubmit = () => {
-        if(formData.statusId !== undefined){
+        validateForm()
+        if(isFormValid === true){
             submitAction(
             {
                 title: formData.title,
