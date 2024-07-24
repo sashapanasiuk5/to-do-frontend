@@ -21,7 +21,10 @@ function ToDoList(){
     }, [taskStore])
 
     const GetTasksByStatus = (status: string): ReactElement[] => {
-        return taskStore.tasks.filter( task => task.status.slug === status).map(task => <ToDoListItem task={task}></ToDoListItem>)
+        return taskStore.tasks
+            .filter( task => task.status.slug === status)
+            .sort( (taskA, taskB) => taskA.priority - taskB.priority)
+            .map(task => <ToDoListItem task={task}></ToDoListItem>)
     }
 
     const handleAddButtonClick = () =>{
