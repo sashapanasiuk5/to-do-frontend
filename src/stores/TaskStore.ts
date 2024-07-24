@@ -4,7 +4,7 @@ import { Status } from "../models/Status";
 import TaskDto from "../models/TaskDto";
 
 
-import {createTask, getAllTasks, updateTask} from "../api/agent"
+import {createTask, deleteTask, getAllTasks, updateTask} from "../api/agent"
 export default class TaskStore{
     tasks: Task[] = []
     statuses: Status[] = []
@@ -48,7 +48,8 @@ export default class TaskStore{
         editedTask.status = status;
     }
 
-    deleteTask = (id: number) => {
+    deleteTask = async (id: number) => {
+        await deleteTask(id)
         let index = this.tasks.findIndex( t => t.id === id)
         this.tasks.splice(index, 1)
     }
