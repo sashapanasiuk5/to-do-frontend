@@ -38,7 +38,7 @@ function ToDoList(){
             let task = taskStore.tasks.find(t => t.id == taskId)
             let status = taskStore.statuses.find(s => s.slug == statusSlug)
             if(task != undefined && status != undefined){
-                task.status = status
+                taskStore.changeTaskStatus(task, status)
             }
         }
     }

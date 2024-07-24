@@ -2,6 +2,7 @@ import { FunctionComponent, ReactElement } from "react";
 import { ToDoListItem } from "../ToDoListItem/ToDoListItem";
 import useMobx from "../../stores/store";
 import { useDroppable } from "@dnd-kit/core";
+import { observer } from "mobx-react-lite";
 
 interface TaskColumnProps {
     name: string
@@ -32,4 +33,4 @@ const TaskColumn: FunctionComponent<TaskColumnProps> = ({name, statusType}) => {
     );
 }
  
-export default TaskColumn;
+export default observer(TaskColumn);

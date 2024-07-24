@@ -27,6 +27,15 @@ export default class TaskStore{
     addTask =(task: Task) => {
         this.tasks.push(task)
     }
+    changeTaskStatus = async(task: Task, status: Status) => {
+        await updateTask(task.id, {
+            title: task.title,
+            description: task.description,
+            priority: task.priority,
+            statusId: status.id
+        })
+        task.status = status
+    }
 
     createTask = async (dto: TaskDto) =>{
         const task: Task = await createTask(dto);
