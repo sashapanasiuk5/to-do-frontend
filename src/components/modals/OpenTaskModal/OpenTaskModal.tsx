@@ -11,6 +11,8 @@ import { TaskForm } from '../../TaskForm/TaskForm';
 
 import './OpenTaskModal.styles.css'
 import { observer } from 'mobx-react-lite';
+import EditTaskModal from '../EditTaskModal/EditTaskModal';
+import ConfirmationModal from '../ConfrmationModal/ConfirmationModal';
 
  
 const OpenTaskModal: FunctionComponent = () => {
@@ -26,8 +28,19 @@ const OpenTaskModal: FunctionComponent = () => {
         modalsStore.OpenModal('editTaskModal')
     }
 
+    const handleDelete = () =>{
+        modalsStore.OpenModal('confirmationModal')
+    }
+
+    const deleteTask = () => {
+        taskStore.deleteTask(taskStore.selectedTask!.id)
+        modalsStore.CloseModal('openTaskModal')
+        taskStore.deselectTask()
+        modalsStore.CloseModal('confirmationModal')
+    }
+
     return (
-        <Modal style={styles} isOpen={modalsStore.modalsState.openTaskModal.isOpen} onRequestClose={handleCloseModal}>
+        <Modal style={styles} isOpen={modalsStore.modalsState.openTaskModal.isOpen} onRequestClose={handleCloseModal} ariaHideApp={false}>
             <div className="OpenTaskModal">
                 <div className="OpenTaskModalTitle">{taskStore.selectedTask !== undefined ? taskStore.selectedTask.title : ''}</div>
                 <div className="OpenTaskModalTags">
@@ -37,9 +50,11 @@ const OpenTaskModal: FunctionComponent = () => {
                 <div className="OpenTaskModalDescription">{taskStore.selectedTask !== undefined ? taskStore.selectedTask.description : ''}</div>
                 <div className="OpenTaskModalButtons">
                     <button className='OpenTaskModalButton edit' onClick={handleEdit}>Edit</button>
-                    <button className='OpenTaskModalButton delete'>Delete</button>
+                    <button className='OpenTaskModalButton delete' onClick={handleDelete}>Delete</button>
                 </div>
             </div>
+            <ConfirmationModal message="Are you sure you want to delete this task?" title="Delete task" onSuccess={deleteTask} okButtonName='Delete'/>
+            
         </Modal>
     );
 }
