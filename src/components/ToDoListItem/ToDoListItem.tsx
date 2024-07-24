@@ -1,7 +1,7 @@
 import React from "react";
 import { Task } from "../../models/Task";
 
-import Edit from '../../icons/edit.svg';
+import {ReactComponent as Open} from '../../icons/open.svg';
 import './ToDoListItem.css'
 import useMobx from "../../stores/store";
  
@@ -38,10 +38,10 @@ export function ToDoListItem ( { task }: Props){
     }
 
     return (
-    <div className="todo-item" onClick={openTask}>
+    <div className="todo-item" >
         <div className="item-header">
             <div className="title">{task.title}</div>
-            <img className="edit-button" src={Edit} alt=""/>
+            <Open className="edit-button" onClick={openTask}/>
         </div>
 
         <div className="description">{trimmedDescription()}</div>
