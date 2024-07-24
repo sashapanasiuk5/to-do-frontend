@@ -4,7 +4,7 @@ import { styles } from "../../../styles/modal.styles";
 import Modal from 'react-modal'
 import { observer } from "mobx-react-lite";
 
-import Alert from '../../../icons/alert.svg'
+import {ReactComponent as Alert} from '../../../icons/alert.svg'
 import './ConfirmationModal.styles.css'
 
 interface ConfirmationModalProps {
@@ -24,7 +24,7 @@ const ConfirmationModal: FunctionComponent<ConfirmationModalProps> = ({title,mes
     return (
         <Modal style={styles} isOpen={modalsStore.modalsState.confirmationModal.isOpen} onRequestClose={handleCloseModal} ariaHideApp={false}>
             <div className="ConfirmationModal">
-                <img src={Alert} alt="" className="ConfirmationModalImage"/>
+                <Alert className="ConfirmationModalImage"/>
                 <div className="ConfirmationModalTitle">{title}</div>
                 <div className="ConfirmationModalMessage">{message}</div>
                 <div className="ConfirmationModalButtons">
