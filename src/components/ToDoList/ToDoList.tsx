@@ -6,7 +6,7 @@ import { ToDoListItem}  from '../ToDoListItem/ToDoListItem';
 import './ToDoList.css'
 import { observer } from 'mobx-react-lite';
 import useMobx from '../../stores/store';
-import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import TaskColumn from '../TaskColumn/TaskColumn';
 
 
@@ -30,12 +30,24 @@ function ToDoList(){
     const handleAddButtonClick = () =>{
         modalsStore.OpenModal('createTaskModal')
     }
+
+    const handleDragEvent = (e: DragEndEvent) =>{
+        if(e.over != null){
+            let statusSlug = e.over.id;
+            let taskId = e.active.id;
+            let task = taskStore.tasks.find(t => t.id == taskId)
+            let status = taskStore.statuses.find(s => s.slug == statusSlug)
+            if(task != undefined && status != undefined){
+                task.status = status
+            }
+        }
+    }
     
     return (
-        <DndContext sensors={sensors}>
+        <DndContext sensors={sensors} onDragEnd={handleDragEvent}>
             <div className="ToDoListWrapper">
                 <div className='list-wrapper'>
-                    {taskStore.statuses.map(st => <TaskColumn name={st.name} statusType={st.slug} />)}
+                    {taskStore.statuses.map(st => <TaskColumn key={st.id} name={st.name} statusType={st.slug} />)}
                 </div>
                 <button className='ToDoListAddButton' onClick={handleAddButtonClick}></button>
             </div>

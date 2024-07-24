@@ -29,7 +29,7 @@ export function ToDoListItem ( { task }: Props){
     const {modalsStore, taskStore} = useMobx();
 
     const {attributes, listeners, setNodeRef, transform} = useDraggable({
-        id: 'task'+task.id
+        id: task.id
     });
     const style = transform ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
