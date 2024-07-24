@@ -11,11 +11,26 @@
     padding: 0px 20px 20px 20px;
 }
 .priority{
-    background-color: #EB7F7F;
     padding: 10px 20px 10px 20px;
     color: #fff;
     display: flex;
     justify-content: space-between;
+}
+
+.priority.red{
+    background-color: #EB7F7F;
+}
+
+.priority.orange{
+    background-color: #F4AF5E;
+}
+
+.priority.yellow{
+    background-color: #FADE4E;
+}
+
+.priority.green{
+    background-color: #AEFA4E;
 }
 
 .item-header{

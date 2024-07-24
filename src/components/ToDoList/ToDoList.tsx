@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
 import { Task } from '../../models/Task';
 import { Status }  from '../../models/Status';
-import ToDoListItem from '../ToDoListItem/ToDoListItem';
+import { ToDoListItem}  from '../ToDoListItem/ToDoListItem';
 
 import './ToDoList.css'
 import { observer } from 'mobx-react-lite';

@@ -7,7 +7,7 @@ import { Task } from '../../../models/Task';
 import TaskDto from '../../../models/TaskDto';
 import useMobx from '../../../stores/store';
 import { TaskForm } from '../../TaskForm/TaskForm';
-
+import { getCardColor} from '../../ToDoListItem/ToDoListItem'
 
 import './OpenTaskModal.styles.css'
 import { observer } from 'mobx-react-lite';
@@ -45,7 +45,7 @@ const OpenTaskModal: FunctionComponent = () => {
                 <div className="OpenTaskModalTitle">{taskStore.selectedTask !== undefined ? taskStore.selectedTask.title : ''}</div>
                 <div className="OpenTaskModalTags">
                     <div className="OpenTaskModalStatus">{taskStore.selectedTask !== undefined ? taskStore.selectedTask.status.name : ''}</div>
-                    <div className="OpenTaskModalPriority">Priority<span>{taskStore.selectedTask !== undefined ? taskStore.selectedTask.priority : ''}</span></div>
+                    <div className={ "OpenTaskModalPriority " + getCardColor(taskStore.selectedTask !== undefined ? taskStore.selectedTask?.priority : 0)}>Priority<span>{taskStore.selectedTask !== undefined ? taskStore.selectedTask.priority : ''}</span></div>
                 </div> 
                 <div className="OpenTaskModalDescription">{taskStore.selectedTask !== undefined ? taskStore.selectedTask.description : ''}</div>
                 <div className="OpenTaskModalButtons">

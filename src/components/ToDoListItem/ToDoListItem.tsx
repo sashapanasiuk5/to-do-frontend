@@ -9,7 +9,21 @@ interface Props{
     task: Task
 }
 
-function ToDoListItem ( { task }: Props){
+export const getCardColor = (priority: number)=>{
+    if(priority <= 2){
+        return 'red'
+    }
+    if (priority <= 5) {
+        return 'orange'
+    }
+    if (priority <= 8) {
+        return 'yellow'
+    } else {
+        return 'green'
+    } 
+}
+
+export function ToDoListItem ( { task }: Props){
     const {modalsStore, taskStore} = useMobx();
 
     const openTask = () => {
@@ -25,12 +39,10 @@ function ToDoListItem ( { task }: Props){
         </div>
 
         <div className="description">{task.description}</div>
-        <div className="priority">
+        <div className={"priority "+getCardColor(task.priority)}>
             <div>Priority</div>
             <span>{task.priority}</span>
         </div>
     </div>
     );
 }
- 
-export default ToDoListItem;
