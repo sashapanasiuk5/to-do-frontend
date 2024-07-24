@@ -31,6 +31,12 @@ export function ToDoListItem ( { task }: Props){
         modalsStore.OpenModal("openTaskModal")
     }
 
+    const trimmedDescription = () => {
+        if(task.description.length > 150)
+            return task.description.substring(0,150) + "..."
+        return task.description
+    }
+
     return (
     <div className="todo-item" onClick={openTask}>
         <div className="item-header">
@@ -38,7 +44,7 @@ export function ToDoListItem ( { task }: Props){
             <img className="edit-button" src={Edit} alt=""/>
         </div>
 
-        <div className="description">{task.description}</div>
+        <div className="description">{trimmedDescription()}</div>
         <div className={"priority "+getCardColor(task.priority)}>
             <div>Priority</div>
             <span>{task.priority}</span>
